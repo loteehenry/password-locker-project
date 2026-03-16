@@ -4,6 +4,8 @@ import hashlib
 import pwinput
 import pyperclip
 
+from src import password_strength as ps
+
 """
     An insecure password locker program
     with python
@@ -48,22 +50,29 @@ def add():
     if not new_password:
         print("Password cannot be empty!")
         return
-    if new_acc not in passwords:
-        passwords[new_acc] = new_password
-        update_passwords(passwords)
-        print("Password database successfully updated!")
-    else:
-        print("Account already exists!")
-        print("Would you like to update it? (y/n)")
-        ans = input()
-        if ans == 'y':
+    if ps.password_strength(new_password):
+        if new_acc not in passwords:
             passwords[new_acc] = new_password
             update_passwords(passwords)
             print("Password database successfully updated!")
-        elif ans == 'n':
-            return
         else:
-            print("Invalid response")
+            print("Account already exists!")
+            print("Would you like to update it? (y/n)")
+            ans = input()
+            if ans == 'y':
+                passwords[new_acc] = new_password
+                update_passwords(passwords)
+                print("Password database successfully updated!")
+            elif ans == 'n':
+                return
+            else:
+                print("Invalid response")
+    else:
+        print("""PASSWORD NOT STRONG ENOUGH!!!
+A strong password:
+- is at least 8 characters long
+- contains at least one uppercase and lowercase letter
+- contains at least one number""")
 
 def remove():
     print("Enter account you would like to remove:")
