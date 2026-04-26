@@ -36,7 +36,7 @@ def view():
     print("_"*30)
     for k, v in passwords.items():
         print(k.ljust(15, "-"), end="")
-        print("--[*ENCRYPTED*]".rjust(15, " "))
+        print("--[*HIDDEN*]".rjust(15, " "))
 
 
 def add():
@@ -112,8 +112,8 @@ if __name__ == '__main__':
             correct_hash = f.read().strip()
 
         print("Please confirm it's you: (Enter password)")
-        inputed_password = pwinput.pwinput(prompt="", mask="*")
-        hashed_input = hashlib.sha256(inputed_password.encode()).hexdigest()
+        inputted_password = pwinput.pwinput(prompt="", mask="*")
+        hashed_input = hashlib.sha256(inputted_password.encode()).hexdigest()
         if correct_hash == hashed_input:
             print("Welcome Sir...")
             return True
