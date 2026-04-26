@@ -6,6 +6,31 @@ This project allows users to store and retrieve account passwords using a master
 The program demonstrates fundamental backend concepts such as password hashing, JSON-based storage, and modular CLI design.
 
 ---
+## Why I Built This
+
+This project was built as part of my early exploration into Python and backend system design.
+
+Rather than relying on high-level tools, I focused on understanding how core components work under the hood, including:
+- File-based data persistence
+- Authentication flow using hashing
+- Command-line interface structuring
+- Input validation and modular design 
+
+The goal was not to build a production-ready password manager, but to understand how such systems are structured at a fundamental level.
+
+---
+
+## Key Learning Outcomes
+
+Through this project, I developed practical understanding of:
+
+- Structuring CLI applications using command-function mapping
+- Separating logic into modules (e.g., password validation)
+- Handling persistent storage with JSON
+- Implementing basic authentication using hashing
+- Designing user interaction flows in a terminal environment
+
+---
 
 ## Features
 
@@ -54,7 +79,7 @@ Run the script using:
 python password_locker.py
 ```
 
-When the program starts, you will be prompted to enter the master password (which is password123).
+When the program starts, you will be prompted to enter the master password (A predefined master password - password123, is used for demonstration purposes).
 
 ---
 
@@ -87,10 +112,12 @@ Password database successfully updated!
 
 ## How It Works
 
-1. The user authenticates with a master password.
-2. The master password is hashed using SHA-256 and compared to the stored hash in `master.key`.
-3. Account passwords are stored in `passwords.json`.
-4. When a user retrieves a password, it is copied directly to the system clipboard.
+1. The user is prompted to enter a master password.
+2. The input is hashed using SHA-256 and compared to a stored hash in `master.key`.
+3. Upon successful authentication, the application loads stored credentials from `passwords.json`.
+4. Commands are mapped to functions using a dictionary-based dispatch system.
+5. Passwords can be added, retrieved (copied to clipboard), viewed (masked), or removed.
+6. Updates are written back to the JSON file to maintain persistence.
 
 ---
 
@@ -111,28 +138,31 @@ python-password-locker/
 
 ## Security Notice
 
-This project was built for **learning purposes** and should not be used as a production password manager.
+This project was built **strictly for learning purposes** and is not intended for real-world use.
 
-Limitations include:
+While it implements basic authentication using SHA-256 hashing, it does not follow industry-standard security practices.
 
-* Account passwords are stored in plaintext in `passwords.json`
-* No encryption of stored credentials
-* No salting or key-derivation for the master password
-* No protection against brute-force attacks
+Key limitations include:
 
-Real-world password managers use encryption and specialized libraries to protect stored credentials.
+- Passwords are stored in plaintext within `passwords.json`
+- No encryption is applied to stored credentials
+- No salting or key derivation (e.g., bcrypt, PBKDF2)
+- No protection against brute-force attacks
 
+This project helped highlight the difference between *functional systems* and *secure systems*, which is a key consideration in real-world software development.
 ---
 
-## Future Improvements
+## Future Direction
 
-Possible improvements for this project:
+Future iterations of this project could include:
 
-* Encrypt stored passwords
-* Implement salted password hashing
-* Add account search functionality
-* Improve command-line interface
-* Add logging and error handling
+- Encrypting stored credentials using symmetric encryption
+- Implementing secure password hashing (e.g., bcrypt or Argon2)
+- Introducing structured error handling
+- Improving CLI usability and feedback
+- Refactoring into a more scalable architecture
+
+These improvements reflect my ongoing transition from building functional systems to designing more robust and secure applications.
 
 ---
 
