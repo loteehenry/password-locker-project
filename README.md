@@ -150,6 +150,7 @@ Key limitations include:
 - No protection against brute-force attacks
 
 This project helped highlight the difference between *functional systems* and *secure systems*, which is a key consideration in real-world software development.
+
 ---
 
 ## Future Direction
